@@ -10,6 +10,7 @@ import { firebaseConfig } from 'src/firebase-config';
 import { BoardComponent } from './components/board/board.component';
 import { GameComponent } from './components/game/game.component';
 import { JoinRoomComponent } from './components/join-room/join-room.component';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { JoinRoomComponent } from './components/join-room/join-room.component';
     BrowserModule,
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

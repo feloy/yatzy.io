@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticatedUser } from './components/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  user: firebase.User;
+  user: AuthenticatedUser;
 
-  userChange(user: firebase.User) {
+  userChange(user: AuthenticatedUser) {
     this.user = user;
   }
 }

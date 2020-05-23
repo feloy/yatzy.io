@@ -1,11 +1,12 @@
 <div class="auth">
     <div class="title spaced">YATZY&bull;IO</div>
     <div *ngIf="auth.user | async as user; else showLogin">
-        <h1>You are authenticated</h1>
+        <h1>{{name}}, you are authenticated</h1>
         <button (click)="logout()">Logout</button>
     </div>
     <ng-template #showLogin>
         <p>Please login.</p>
+        <input id="name" type="text" [(ngModel)]="name">
         <button (click)="login()">Anonymous Login</button>
     </ng-template>
 </div>

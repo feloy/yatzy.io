@@ -1,11 +1,9 @@
 <div class="main">
-    <label for="name" class="spaced">Your nickname:</label>
-    <input id="name" type="text" [(ngModel)]="name">
     <select [(ngModel)]="size" class="spaced">
         <option value="2">2 players</option>
         <option value="3">3 players</option>
         <option value="4">4 players</option>
         <option value="6">6 players</option>
     </select>
-    <button (click)="play()" [disabled]="!(name  && size)" class="spaced">Play</button>
+    <button (click)="play()" [disabled]="!size" class="spaced">Play</button>
 </div>

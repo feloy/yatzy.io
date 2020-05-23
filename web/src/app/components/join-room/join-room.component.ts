@@ -1,8 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 export interface RoomConfig {
-  // my nickname
-  me: string;
   // Total number of players
   roomSize: number;
 }
@@ -16,7 +14,6 @@ export class JoinRoomComponent implements OnInit {
 
   @Output('configChange') msg = new EventEmitter<RoomConfig>();
 
-  name: string;
   size: string;
 
   constructor() { }
@@ -26,7 +23,6 @@ export class JoinRoomComponent implements OnInit {
 
   play() {
     this.msg.emit({
-      me: this.name, 
       roomSize: parseInt(this.size, 10)
     })
   }
