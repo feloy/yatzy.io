@@ -18,5 +18,27 @@ export const firebaseConfig = {
     projectId: 'your-firebase-project-id',
     [...]
 };
+```
 
+Copy the Firebase configuration files to a bucket for CI/CD:
+
+```shell
+gsutil mb gs://$GOOGLE_CLOUD_PROJECT
+gsutil cp \
+    web/src/firebase-config.ts \
+    web/firebase.json \
+    web/.firebaserc \
+    gs://$GOOGLE_CLOUD_PROJECT/firebase-config.ts
+```
+
+Build the firebase Docker image needed for the web build:
+
+```shell
+gcloud builds submit --config=tools/firebase/cloudbuild.yaml tools/firebase
+```
+
+Build and deploy the web app:
+
+```shell
+gcloud builds submit --config=web/cloudbuild.yaml web
 ```

@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod",
+    "build:prod:cloudbuild": "cp /workspace/firebase-config.ts src/firebase-config.ts && npm run build:prod --output-path=/workspace/dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

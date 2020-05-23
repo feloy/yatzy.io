@@ -1,0 +1,36 @@
+steps:
+
+- id: install-web
+  waitFor: ['-']
+  name: node:10.15.1
+  entrypoint: npm
+  args: [ 'install' ]
+  dir: web
+
+- id: get-config
+  waitFor: ['-']
+  name: gcr.io/cloud-builders/gsutil
+  args:
+  - cp
+  - gs://$PROJECT_ID/firebase-config.ts
+  - gs://$PROJECT_ID/firebase.json
+  - gs://$PROJECT_ID/.firebaserc
+  - /workspace/
+
+- id: build-web
+  waitFor: ['install-web', 'get-config']
+  name: node:10.15.1
+  entrypoint: npm
+  args:
+  - run
+  - build:prod:cloudbuild
+  dir: web
+
+- id: deploy-web
+  waitFor: ['build-web']
+  name: 'eu.gcr.io/$PROJECT_ID/firebase'
+  entrypoint: /bin/bash
+  args:
+  - -c
+  - cp -R /workspace/firebase.json /workspace/.firebaserc /workspace/dist . && firebase deploy -P $PROJECT_ID
+  dir: web
