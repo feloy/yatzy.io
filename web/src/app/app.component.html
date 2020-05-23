@@ -1,1 +1,2 @@
-<app-login></app-login>
+<app-login (userChange)="userChange($event)"></app-login>
+<app-game *ngIf="user" [user]="user"></app-game>

@@ -1,0 +1,10 @@
+.main {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+
+.spaced {
+    margin: 8px;
+}

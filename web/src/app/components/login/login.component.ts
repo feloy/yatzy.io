@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -8,9 +8,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class LoginComponent implements OnInit {
 
+  @Output('userChange') msg = new EventEmitter<firebase.User>();
+
   constructor(public auth: AngularFireAuth) { }
 
   ngOnInit() {
+    const that = this; 
+    this.auth.auth.onAuthStateChanged(function onStateChanged(firebaseUser: firebase.User) {
+      that.msg.emit(firebaseUser);
+    });
   }
 
   login() {

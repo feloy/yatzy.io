@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'yatzyio';
+
+  user: firebase.User;
+
+  userChange(user: firebase.User) {
+    this.user = user;
+  }
 }

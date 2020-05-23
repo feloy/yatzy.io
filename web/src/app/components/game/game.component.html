@@ -1,0 +1,3 @@
+<app-join-room *ngIf="!roomConfig" (configChange)="configChange($event)"></app-join-room>
+
+<app-board *ngIf="roomConfig" [roomConfig]="roomConfig"></app-board>
