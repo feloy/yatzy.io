@@ -1,11 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BackendService, User } from 'src/app/services/backend.service';
+import { BackendService, User, Player, Position } from 'src/app/services/backend.service';
 import { Board } from '../grid/grid.component';
-
-interface Player {
-  name: string;
-  id: string;
-}
 
 @Component({
   selector: 'app-board',
@@ -48,7 +43,7 @@ export class BoardComponent implements OnInit {
     })
   }
 
-  onSelected(pos: { x: number, y: number }) {
-    
+  onSelected(pos: Position) {
+    this.backend.play(this.myID, pos);
   }
 }

@@ -20,9 +20,15 @@ export interface Room {
   board?: string;
 }
 
-interface Player {
+export interface Player {
+  id?: string;
   bot?: boolean;
   name?: string;
+}
+
+export interface Position {
+  x: number;
+  y: number;
 }
 
 @Injectable({
@@ -77,5 +83,11 @@ export class BackendService {
       filter((room: Room) => 'board' in room),
       map((room: Room) => JSON.parse(room.board))
     )
+  }
+
+  play(userId: string, pos: Position): Promise<void> {
+    return this.db.collection<User>('users').doc(userId).update({
+      click: pos
+    });
   }
 }
