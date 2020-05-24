@@ -18,13 +18,22 @@ export class BoardComponent implements OnInit {
   constructor(public backend: BackendService) { }
 
   ngOnInit() {
-    this.waitingPlayers = Array(this.roomConfig.roomSize).fill("...");
-    this.waitingPlayers[0] = this.me.name;
-
-    this.join();
+    this.join().then((docId: string) => this.waitRoomComplete(docId));
   }
 
-  join() {
-    this.backend.join(this.me, this.roomConfig.roomSize);
+  join(): Promise<string> {
+    return this.backend.join(this.me, this.roomConfig.roomSize);
+  }
+
+  waitRoomComplete(docId: string) {
+    const sub = this.backend.waitRoomComplete(docId)
+    .subscribe(
+      (name: string) => {
+        this.waitingPlayers.push(name);
+        if (this.waitingPlayers.length == this.roomConfig.roomSize) {
+          sub.unsubscribe();
+          console.log("COMPLETE")
+        }
+      });
   }
 }
