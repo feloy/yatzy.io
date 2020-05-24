@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BackendService, User, Player, Position } from 'src/app/services/backend.service';
 import { Board } from '../grid/grid.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -16,6 +17,9 @@ export class BoardComponent implements OnInit {
   public board: Board;
   public usermap: {};
   public me: number;
+
+  public die$: Observable<{ die: { dice: number, i: number }[], shots: (0 | 1 | 2) }>;
+  public finish: boolean = false;
 
   constructor(public backend: BackendService) { }
 
@@ -40,10 +44,18 @@ export class BoardComponent implements OnInit {
         this.board = board;
         console.log("new board", board);
       });
-    })
+    });
+
+    this.die$ = this.backend.listenDie(this.myID);
+
+    this.backend.listenFinish(this.myID).subscribe(() => this.finish = true);
   }
 
   onSelected(pos: Position) {
     this.backend.play(this.myID, pos);
+  }
+
+  onReplay(positions: number[]) {
+    this.backend.replayDie(this.myID, positions);
   }
 }

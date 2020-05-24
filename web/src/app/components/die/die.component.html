@@ -1,0 +1,7 @@
+<div class="die">
+    <div *ngIf="_die">
+        <app-dice *ngFor="let dice of _die; let i = index" [dice]="dice" [initKeep]="keep[i]" [waiting]="waiting[i]"
+            (keep)="onKeep(i, $event)"></app-dice>
+        <button [disabled]="_shots == 0" (click)="onReplay()">Replay</button>
+    </div>
+</div>

@@ -14,6 +14,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BoardComponent } from './components/board/board.component';
 import { GridComponent } from './components/grid/grid.component';
 import { HexagonComponent } from './components/hexagon/hexagon.component';
+import { DieComponent } from './components/die/die.component';
+import { DiceComponent } from './components/dice/dice.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { HexagonComponent } from './components/hexagon/hexagon.component';
     JoinRoomComponent,
     BoardComponent,
     GridComponent,
-    HexagonComponent
+    HexagonComponent,
+    DieComponent,
+    DiceComponent
   ],
   imports: [
     BrowserModule,

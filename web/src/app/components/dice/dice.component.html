@@ -1,0 +1,2 @@
+<img width="64" style="z-index: 1" *ngIf="!anim" class="dice" (click)="onClicked()" [class.keep]="_keep" src="/assets/die/dp{{dice.dice}}{{_keep ? 'vert' : 'bleu'}}.png">
+<img width="64" *ngIf="anim" class="dice" src="/assets/die/dp{{anim}}orange.png">

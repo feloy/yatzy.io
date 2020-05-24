@@ -12,6 +12,7 @@ export interface User {
   room?: string;
   die?: number[];
   shots?: 0 | 1 | 2;
+  finish?: boolean;
 }
 
 export interface Room {
@@ -71,23 +72,50 @@ export class BackendService {
 
   getUser(docId: string): Observable<User> {
     return this.db.collection<User>('users').doc(docId).valueChanges()
-    .pipe(
-      filter((userDoc: User) => userDoc && 'room' in userDoc),
-      first()
-    );
+      .pipe(
+        filter((userDoc: User) => userDoc && 'room' in userDoc),
+        first()
+      );
   }
 
   listenBoard(roomId: string): Observable<Board> {
     return this.db.collection<Room>('rooms').doc(roomId).valueChanges()
-    .pipe(
-      filter((room: Room) => 'board' in room),
-      map((room: Room) => JSON.parse(room.board))
-    )
+      .pipe(
+        filter((room: Room) => 'board' in room),
+        map((room: Room) => JSON.parse(room.board))
+      )
   }
 
   play(userId: string, pos: Position): Promise<void> {
     return this.db.collection<User>('users').doc(userId).update({
       click: pos
     });
+  }
+
+  listenDie(docId: string): Observable<any> {
+    return this.db.collection<User>('users').doc(docId).valueChanges()
+      .pipe(
+        filter((usr: User) => usr && 'die' in usr && !('replay' in usr)),
+        map((usr: User) => ({
+          die: usr.die.reduce((acc, val, ind) => [...acc, { dice: val, i: ind }], []),
+          shots: usr.shots
+        })
+        )
+      );
+  }
+
+  replayDie(docId: string, positions: number[]) {
+    this.db.collection<User>('users').doc(docId).update({
+      replay: positions
+    });
+  }
+
+  listenFinish(docId: string): Observable<boolean> {
+    return this.db.collection<User>('users').doc(docId).valueChanges()
+      .pipe(
+        filter((user: User) => user && 'finish' in user && user['finish'] === true),
+        first(),
+        map(() => true)
+      );
   }
 }
