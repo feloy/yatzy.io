@@ -1,0 +1,21 @@
+steps:
+- id: deploy
+  name: gcr.io/cloud-builders/gcloud
+  args:
+  - functions
+  - deploy
+  - newUser
+  - --entry-point
+  - OnNewUser
+  - --memory
+  - 256MB
+  - --region
+  - europe-west1
+  - --runtime
+  - go111
+  - --no-allow-unauthenticated
+  - --trigger-event
+  - providers/cloud.firestore/eventTypes/document.create
+  - --trigger-resource
+  - projects/$PROJECT_ID/databases/(default)/documents/users/{id}
+  - --set-env-vars=PROJECT_ID=$PROJECT_ID
