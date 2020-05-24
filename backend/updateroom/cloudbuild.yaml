@@ -1,0 +1,21 @@
+steps:
+- id: deploy
+  name: gcr.io/cloud-builders/gcloud
+  args:
+  - functions
+  - deploy
+  - updateRoom
+  - --entry-point
+  - OnUpdateRoom
+  - --memory
+  - 256MB
+  - --region
+  - europe-west1
+  - --runtime
+  - go111
+  - --no-allow-unauthenticated
+  - --trigger-event
+  - providers/cloud.firestore/eventTypes/document.update
+  - --trigger-resource
+  - projects/$PROJECT_ID/databases/(default)/documents/rooms/{id}
+  - --set-env-vars=PROJECT_ID=$PROJECT_ID
