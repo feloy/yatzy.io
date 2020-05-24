@@ -1,0 +1,5 @@
+<div class="grid" [style.width.px]="w" [style.height.px]="h">
+    <app-hexagon *ngFor="let hexagon of hexagons" [c]="hexagon.colorIndex" [w]="w" [h]="h" [x]="hexagon.x"
+        [y]="hexagon.y" [p]="hexagon.p" [label]="hexagon.label" [played]="hexagon.played"
+        (selected)="onSelected(hexagon.p)"></app-hexagon>
+</div>

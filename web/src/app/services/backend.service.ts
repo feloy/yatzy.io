@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AuthenticatedUser } from '../components/login/login.component';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { filter, take, takeWhile, mergeMap } from 'rxjs/operators';
+import { AngularFirestore, DocumentSnapshot, DocumentData } from '@angular/fire/firestore';
+import { filter, take, mergeMap, tap, first, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Board } from '../components/grid/grid.component';
 
 export interface User {
   name?: string;
@@ -53,10 +54,28 @@ export class BackendService {
           return this.db.collection('rooms').doc(roomID).collection('players').stateChanges()
             .pipe(
               mergeMap(actions => {
-                return actions.map(action => action.payload.doc.data().name);
+                return actions.map(action => {
+                  return { name: action.payload.doc.data().name, id: action.payload.doc.id };
+                });
               })
             );
         })
       );
+  }
+
+  getUser(docId: string): Observable<User> {
+    return this.db.collection<User>('users').doc(docId).valueChanges()
+    .pipe(
+      filter((userDoc: User) => userDoc && 'room' in userDoc),
+      first()
+    );
+  }
+
+  listenBoard(roomId: string): Observable<Board> {
+    return this.db.collection<Room>('rooms').doc(roomId).valueChanges()
+    .pipe(
+      filter((room: Room) => 'board' in room),
+      map((room: Room) => JSON.parse(room.board))
+    )
   }
 }

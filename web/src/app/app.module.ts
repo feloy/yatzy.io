@@ -7,18 +7,24 @@ import { LoginComponent } from './components/login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig } from 'src/firebase-config';
-import { BoardComponent } from './components/board/board.component';
+import { WaitRoomComponent } from './components/wait-room/wait-room.component';
 import { GameComponent } from './components/game/game.component';
 import { JoinRoomComponent } from './components/join-room/join-room.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { BoardComponent } from './components/board/board.component';
+import { GridComponent } from './components/grid/grid.component';
+import { HexagonComponent } from './components/hexagon/hexagon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    BoardComponent,
+    WaitRoomComponent,
     GameComponent,
-    JoinRoomComponent
+    JoinRoomComponent,
+    BoardComponent,
+    GridComponent,
+    HexagonComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,83 @@
+
+.hexagon {
+    position: relative;
+    width: 50px; 
+    height: 28.87px;
+    margin: 14.43px 0;
+    line-height: 28.87px;
+  
+    &.user0 { background-color: #F44336;  }
+    &.user0:before { border-bottom: 14.43px solid #F44336;  }
+    &.user0:after { border-top: 14.43px solid #F44336;  }
+  
+    &.userc0 { background-color: #EF9A9A;  }
+    &.userc0:before { border-bottom: 14.43px solid #EF9A9A;  }
+    &.userc0:after { border-top: 14.43px solid #EF9A9A;  }
+  
+    &.user1 { background-color: #2196F3;  }
+    &.user1:before { border-bottom: 14.43px solid #2196F3;  }
+    &.user1:after { border-top: 14.43px solid #2196F3;  }
+  
+    &.userc1 { background-color: #90CAF9;  }
+    &.userc1:before { border-bottom: 14.43px solid #90CAF9;  }
+    &.userc1:after { border-top: 14.43px solid #90CAF9;  }
+  
+    &.user2 { background-color: #FFEB3B;  }
+    &.user2:before { border-bottom: 14.43px solid #FFEB3B;  }
+    &.user2:after { border-top: 14.43px solid #FFEB3B;  }
+  
+    &.userc2 { background-color: #FFF59D;  }
+    &.userc2:before { border-bottom: 14.43px solid #FFF59D;  }
+    &.userc2:after { border-top: 14.43px solid #FFF59D;  }
+  
+    &.user3 { background-color: #4CAF50;  }
+    &.user3:before { border-bottom: 14.43px solid #4CAF50;  }
+    &.user3:after { border-top: 14.43px solid #4CAF50;  }
+  
+    &.userc3 { background-color: #A5D6A7;  }
+    &.userc3:before { border-bottom: 14.43px solid #A5D6A7;  }
+    &.userc3:after { border-top: 14.43px solid #A5D6A7;  }
+  
+    &.user4 { background-color: #FF9800;  }
+    &.user4:before { border-bottom: 14.43px solid #FF9800;  }
+    &.user4:after { border-top: 14.43px solid #FF9800;  }
+  
+    &.userc4 { background-color: #FFCC80;  }
+    &.userc4:before { border-bottom: 14.43px solid #FFCC80;  }
+    &.userc4:after { border-top: 14.43px solid #FFCC80;  }
+  
+    &.user5 { background-color: #795548;  }
+    &.user5:before { border-bottom: 14.43px solid #795548;  }
+    &.user5:after { border-top: 14.43px solid #795548;  }
+    
+    &.userc5 { background-color: #BCAAA4;  }
+    &.userc5:before { border-bottom: 14.43px solid #BCAAA4;  }
+    &.userc5:after { border-top: 14.43px solid #BCAAA4;  }
+    
+    &.normal { background-color: #ECEFF1;  }
+    &.normal:before { border-bottom: 14.43px solid #ECEFF1;  }
+    &.normal:after { border-top: 14.43px solid #ECEFF1;  }
+  }
+  
+  .hexagon:before,
+  .hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+  }
+  
+  .hexagon:before {
+    bottom: 100%;
+    border-bottom: 14.43px solid #64C7CC;
+  }
+  
+  .hexagon:after {
+    top: 100%;
+    width: 0;
+    border-top: 14.43px solid #64C7CC;
+  }
+  
+  .text { text-align: center; }
+  

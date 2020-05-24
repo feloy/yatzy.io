@@ -1,5 +1,3 @@
-<div *ngIf="waitingPlayers.length" class="waiting_players">
-    <div class="title">{{roomConfig.roomSize}} players room</div>
-    <div *ngFor="let player of waitingPlayers">{{player}}</div>
+<div class="game">
+    <app-grid [board]="board" [usermap]="usermap" [me]="me" (selected)="onSelected($event)"></app-grid>
 </div>
-<div class="foot">YATZY&bull;IO</div>

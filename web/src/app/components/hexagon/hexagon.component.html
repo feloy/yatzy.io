@@ -1,0 +1,20 @@
+<div 
+  [class.normal]="c == -1" 
+  [class.user0]="c == 0 && played"
+  [class.user1]="c == 1 && played"
+  [class.user2]="c == 2 && played"
+  [class.user3]="c == 3 && played"
+  [class.user4]="c == 4 && played"
+  [class.user5]="c == 5 && played"
+  [class.userc0]="c == 0 && !played"
+  [class.userc1]="c == 1 && !played"
+  [class.userc2]="c == 2 && !played"
+  [class.userc3]="c == 3 && !played"
+  [class.userc4]="c == 4 && !played"
+  [class.userc5]="c == 5 && !played"
+  class="hexagon" 
+  [style.left.px]="X" 
+  [style.top.px]="Y" 
+  (click)="onclick()">
+  <div class="text" [title]="title">{{_label}}</div>
+</div>

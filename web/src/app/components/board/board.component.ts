@@ -1,7 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RoomConfig } from '../join-room/join-room.component';
-import { AuthenticatedUser } from '../login/login.component';
-import { BackendService } from 'src/app/services/backend.service';
+import { BackendService, User } from 'src/app/services/backend.service';
+import { Board } from '../grid/grid.component';
+
+interface Player {
+  name: string;
+  id: string;
+}
 
 @Component({
   selector: 'app-board',
@@ -10,30 +14,41 @@ import { BackendService } from 'src/app/services/backend.service';
 })
 export class BoardComponent implements OnInit {
 
-  @Input('roomConfig') roomConfig: RoomConfig;
-  @Input('user') me: AuthenticatedUser;
+  @Input('myID') myID: string;
+  @Input('players') players: Player[];
 
-  public waitingPlayers: string[] = [];
+  private user: User;
+  public board: Board;
+  public usermap: {};
+  public me: number;
 
   constructor(public backend: BackendService) { }
 
   ngOnInit() {
-    this.join().then((docId: string) => this.waitRoomComplete(docId));
-  }
+    this.usermap = {};
+    this.players.map((usr: Player) => this.usermap[usr.id] = this.players.indexOf(usr));
 
-  join(): Promise<string> {
-    return this.backend.join(this.me, this.roomConfig.roomSize);
-  }
+    for (var i = 0; i < this.players.length; i++) {
+      if (this.players[i].id == this.myID) {
+        this.me = i;
+        break;
+      }
+    }
 
-  waitRoomComplete(docId: string) {
-    const sub = this.backend.waitRoomComplete(docId)
-    .subscribe(
-      (name: string) => {
-        this.waitingPlayers.push(name);
-        if (this.waitingPlayers.length == this.roomConfig.roomSize) {
-          sub.unsubscribe();
-          console.log("COMPLETE")
-        }
+    console.log("usermap", this.usermap);
+    console.log("me", this.me);
+    console.log("myId", this.myID);
+
+    this.backend.getUser(this.myID).subscribe((user: User) => {
+      this.user = user;
+      this.backend.listenBoard(this.user.room).subscribe((board: Board) => {
+        this.board = board;
+        console.log("new board", board);
       });
+    })
+  }
+
+  onSelected(pos: { x: number, y: number }) {
+    
   }
 }

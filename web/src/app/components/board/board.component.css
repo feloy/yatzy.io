@@ -1,12 +1,5 @@
-.foot {
-    text-align: center;
-    margin-top: 24px;
-}
-
-.waiting_players {
-    text-align: center;
-}
-
-.waiting_players > .title { 
-    font-size: 21px; margin: 8px; 
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
