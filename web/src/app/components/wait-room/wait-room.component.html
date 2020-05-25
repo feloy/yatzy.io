@@ -1,6 +1,10 @@
-<div *ngIf="!complete && waitingPlayers.length" class="waiting_players">
-    <div class="title">{{roomConfig.roomSize}} players room</div>
-    <div *ngFor="let player of waitingPlayers">{{player.name}}</div>
+<div class="waiting_players">
+    <div *ngIf="!waitingPlayers.length">Please wait...</div>
+    <div *ngIf="!complete && waitingPlayers.length">
+        <h2 class="title">{{roomConfig.roomSize}} players room</h2>
+        <div *ngFor="let player of waitingPlayers">{{player.name}}</div>
+        <div>...</div>
+    </div>
 </div>
 
 <app-board *ngIf="complete" [myID]="myID" [players]="waitingPlayers"></app-board>

@@ -1,0 +1,8 @@
+<ul>
+    <li *ngFor="let user of _players; let i = index" [class.me]="userId==user.id">
+        <span [style.color]="colors[i]">&#x2B22;</span>
+        <span class="name">{{user.name}}</span>
+        <span class="score"><span
+                class="prefix">{{scores[user.id] | yatzyScore}}</span><span>{{scores[user.id]}}</span></span>
+    </li>
+</ul>

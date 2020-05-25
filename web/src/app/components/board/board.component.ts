@@ -14,7 +14,7 @@ export class BoardComponent implements OnInit {
   @Input('players') players: Player[];
 
   private user: User;
-  public board: Board;
+  public board: Board[];
   public usermap: {};
   public me: number;
 
@@ -34,15 +34,10 @@ export class BoardComponent implements OnInit {
       }
     }
 
-    console.log("usermap", this.usermap);
-    console.log("me", this.me);
-    console.log("myId", this.myID);
-
     this.backend.getUser(this.myID).subscribe((user: User) => {
       this.user = user;
-      this.backend.listenBoard(this.user.room).subscribe((board: Board) => {
+      this.backend.listenBoard(this.user.room).subscribe((board: Board[]) => {
         this.board = board;
-        console.log("new board", board);
       });
     });
 
@@ -57,5 +52,9 @@ export class BoardComponent implements OnInit {
 
   onReplay(positions: number[]) {
     this.backend.replayDie(this.myID, positions);
+  }
+
+  userScore(score: number) {
+    // TODO send to leaderboard
   }
 }

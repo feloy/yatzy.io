@@ -1,5 +1,10 @@
 .game {
+    margin-top: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.infobar {
+    margin-bottom: 16px;
 }

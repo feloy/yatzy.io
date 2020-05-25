@@ -1,0 +1,39 @@
+ul { 
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    flex: 1 0 0;
+    padding: 8px;
+}
+
+li > * {
+    padding: 0 8px;
+}
+
+li > .name { 
+    flex-grow: 1;
+}
+
+li.me > .name {
+    text-decoration: underline; 
+}
+
+.prefix {
+    opacity: 0.1;
+}
+
+ul, ul > li {
+    border: dotted;
+    border-color: rgba(0,0,0,.3);
+}
+
+ul {
+    border-width: 1px 0 0 1px
+}
+
+ul > li {
+    border-width: 0 1px 1px 0
+}

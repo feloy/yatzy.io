@@ -15,11 +15,13 @@ export class LoginComponent implements OnInit {
 
   @Output('userChange') msg = new EventEmitter<AuthenticatedUser>();
 
+  readonly nameKey = 'nickname';
   name: string;
 
   constructor(public auth: AngularFireAuth) { }
 
   ngOnInit() {
+    this.name = window.localStorage.getItem(this.nameKey);
     const that = this; 
     this.auth.auth.onAuthStateChanged(function onStateChanged(firebaseUser: firebase.User) {
       if (firebaseUser) {
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    window.localStorage.setItem(this.nameKey, this.name);
     this.auth.auth.signInAnonymously().catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;

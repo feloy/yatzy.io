@@ -16,6 +16,8 @@ import { GridComponent } from './components/grid/grid.component';
 import { HexagonComponent } from './components/hexagon/hexagon.component';
 import { DieComponent } from './components/die/die.component';
 import { DiceComponent } from './components/dice/dice.component';
+import { RoomInfoComponent } from './components/room-info/room-info.component';
+import { YatzyScorePipe } from './pipes/yatzy-score.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { DiceComponent } from './components/dice/dice.component';
     GridComponent,
     HexagonComponent,
     DieComponent,
-    DiceComponent
+    DiceComponent,
+    RoomInfoComponent,
+    YatzyScorePipe
   ],
   imports: [
     BrowserModule,

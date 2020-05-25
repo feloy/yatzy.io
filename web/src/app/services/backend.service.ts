@@ -78,7 +78,7 @@ export class BackendService {
       );
   }
 
-  listenBoard(roomId: string): Observable<Board> {
+  listenBoard(roomId: string): Observable<Board[]> {
     return this.db.collection<Room>('rooms').doc(roomId).valueChanges()
       .pipe(
         filter((room: Room) => 'board' in room),

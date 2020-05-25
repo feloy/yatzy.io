@@ -4,9 +4,10 @@
 }
 
 .waiting_players {
+    margin-top: 16px;
     text-align: center;
 }
 
-.waiting_players > .title { 
+h2.title { 
     font-size: 21px; margin: 8px; 
 }

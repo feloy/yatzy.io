@@ -1,4 +1,10 @@
 <div class="game">
+    <div class="infobar">
+        <app-room-info [board]="board" [players]="players" [userId]="myID" (userScore)="userScore($event)">
+        </app-room-info>
+        <!--app-high-scores [highScores]="myHighScores" [score]="myScore"></app-high-scores-->
+    </div>
+
     <app-grid [board]="board" [usermap]="usermap" [me]="me" (selected)="onSelected($event)"></app-grid>
     <app-die *ngIf="!finish" [die]="die$ | async" (replay)="onReplay($event)"></app-die>
 </div>
