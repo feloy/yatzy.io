@@ -1,12 +1,16 @@
 # Yatzy.io: An online and multi-player yatzy game
 
-## Web
+This project is a multi-player Yatzy game. It is composed of:
+
+- a backend written in Go hosted on GCP Cloud Functions,
+- a frontend written with Angular, hosted on Firebse Hosting,
+- an Android application written in Kotlin (open sourced soon).
+
+## Deployment (under construction)
 
 Create a Firebase project and add a web application.
 
-### Authentication
-
-[Use anonymous authentication for the web](https://firebase.google.com/docs/auth/web/anonymous-auth)
+### Web
 
 Get the Firebase SDK Snippet Configuration and create a `web/src/firebase-config.ts` file containing something similar to:
 
@@ -41,4 +45,16 @@ Build and deploy the web app:
 
 ```shell
 gcloud builds submit --config=web/cloudbuild.yaml web
+```
+
+### Backend
+
+Build and deploy the functions:
+
+```shell
+for f in newuser updateroom updateuser writeroomplayer
+do
+    gcloud builds submit --config=backend/$f/cloudbuild.yaml backend/$f
+done
+
 ```
