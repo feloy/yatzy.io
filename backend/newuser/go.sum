@@ -58,6 +58,14 @@ github.com/feloy/yatzy.io/backend/lib v0.0.0-20200524090544-72175a4c2f55 h1:cNTp
 github.com/feloy/yatzy.io/backend/lib v0.0.0-20200524090544-72175a4c2f55/go.mod h1:BkwlK6BucSQ+lT+3W+FH5KAz4WZeIOArPZirBzIIegY=
 github.com/feloy/yatzy.io/backend/lib v0.0.0-20200524090725-d47b11b4eb79 h1:2F8Vf8zb5wPKxaa4bF6sPRfyZqcupG8vaAIqhZisHAw=
 github.com/feloy/yatzy.io/backend/lib v0.0.0-20200524090725-d47b11b4eb79/go.mod h1:BkwlK6BucSQ+lT+3W+FH5KAz4WZeIOArPZirBzIIegY=
+github.com/feloy/yatzy.io/backend/lib v0.0.0-20200525152215-d9b1735b7c1d h1:mDNuvInHKc3w798tkeOFeJwYtahOkKd82kyjUkWdyp8=
+github.com/feloy/yatzy.io/backend/lib v0.0.0-20200525152215-d9b1735b7c1d/go.mod h1:BkwlK6BucSQ+lT+3W+FH5KAz4WZeIOArPZirBzIIegY=
+github.com/feloy/yatzy.io/backend/lib v0.0.0-20200525153209-0df048f27b20 h1:B1G2on7Nf+UJeQXOTFw/lMcJIq+/HvZCN1OL5GVLfyM=
+github.com/feloy/yatzy.io/backend/lib v0.0.0-20200525153209-0df048f27b20/go.mod h1:BkwlK6BucSQ+lT+3W+FH5KAz4WZeIOArPZirBzIIegY=
+github.com/feloy/yatzy.io/backend/lib v0.0.0-20200525160325-8cd42b844142 h1:SV5DZB1E6eZXonMRgfBL6RneNx59+C3eE2ezMRGiZ98=
+github.com/feloy/yatzy.io/backend/lib v0.0.0-20200525160325-8cd42b844142/go.mod h1:BkwlK6BucSQ+lT+3W+FH5KAz4WZeIOArPZirBzIIegY=
+github.com/feloy/yatzy.io/backend/lib v0.0.0-20200525161208-0abe31e03d59 h1:YSQ3CFOK0EJqxHOkXxvGeckiDPbBulHflWZbpROM7eU=
+github.com/feloy/yatzy.io/backend/lib v0.0.0-20200525161208-0abe31e03d59/go.mod h1:BkwlK6BucSQ+lT+3W+FH5KAz4WZeIOArPZirBzIIegY=
 github.com/go-gl/glfw v0.0.0-20190409004039-e6da0acd62b1/go.mod h1:vR7hzQXu2zJy9AVAgeJqvqgH9Q5CA+iKCZ2gyEVpxRU=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20191125211704-12ad95a8df72/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200222043503-6f7a984d4dc4/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=

@@ -100,7 +100,7 @@ func OnNewUser(ctx context.Context, e FirestoreEvent) error {
 				return err
 			}
 			// Create companion Bot users
-			for i := 1; i < *user.Size; i++ {
+			for i := 0; i < *user.BotsInvites; i++ {
 				err = CreateBotUser(ctx, tx, client, i, roomID)
 				if err != nil {
 					log.Printf("error creating bot user")
