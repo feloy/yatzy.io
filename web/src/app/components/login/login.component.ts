@@ -1,10 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-export interface AuthenticatedUser {
-  name: string;
-  token: string;
-}
+import { AuthenticatedUser } from 'src/app/models/authenticated-user';
 
 @Component({
   selector: 'app-login',

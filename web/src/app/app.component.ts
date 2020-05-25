@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthenticatedUser } from './components/login/login.component';
+
+import { AuthenticatedUser } from './models/authenticated-user';
 
 @Component({
   selector: 'app-root',

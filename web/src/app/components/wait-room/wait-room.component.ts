@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RoomConfig } from '../join-room/join-room.component';
-import { AuthenticatedUser } from '../login/login.component';
+
 import { BackendService } from 'src/app/services/backend.service';
+
+import { RoomConfig } from 'src/app/models/room-config';
+import { AuthenticatedUser } from 'src/app/models/authenticated-user';
 
 @Component({
   selector: 'app-wait-room',

@@ -1,9 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-export interface RoomConfig {
-  // Total number of players
-  roomSize: number;
-}
+import { RoomConfig } from 'src/app/models/room-config';
 
 @Component({
   selector: 'app-join-room',

@@ -1,36 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AuthenticatedUser } from '../components/login/login.component';
-import { AngularFirestore, DocumentSnapshot, DocumentData } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 import { filter, take, mergeMap, tap, first, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Board } from '../components/grid/grid.component';
 
-export interface User {
-  name?: string;
-  size?: number; // number of players required
-  tokenId: string;
-  room?: string;
-  die?: number[];
-  shots?: 0 | 1 | 2;
-  finish?: boolean;
-}
-
-export interface Room {
-  full?: boolean;
-  users?: string[];
-  board?: string;
-}
-
-export interface Player {
-  id?: string;
-  bot?: boolean;
-  name?: string;
-}
-
-export interface Position {
-  x: number;
-  y: number;
-}
+import { User } from '../models/user';
+import { Room } from '../models/room';
+import { Position } from '../models/position';
+import { AuthenticatedUser } from '../models/authenticated-user';
+import { Board } from '../models/board';
 
 @Injectable({
   providedIn: 'root'

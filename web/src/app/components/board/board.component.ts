@@ -1,7 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BackendService, User, Player, Position } from 'src/app/services/backend.service';
-import { Board } from '../grid/grid.component';
+
 import { Observable } from 'rxjs';
+
+import { BackendService } from 'src/app/services/backend.service';
+
+import { User } from 'src/app/models/user';
+import { Position } from 'src/app/models/position';
+import { Player } from 'src/app/models/player';
+import { Board } from 'src/app/models/board';
 
 @Component({
   selector: 'app-board',

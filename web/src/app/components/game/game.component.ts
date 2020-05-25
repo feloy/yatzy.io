@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RoomConfig } from '../join-room/join-room.component';
-import { AuthenticatedUser } from '../login/login.component';
+
+import { AuthenticatedUser } from 'src/app/models/authenticated-user';
+import { RoomConfig } from 'src/app/models/room-config';
 
 @Component({
   selector: 'app-game',

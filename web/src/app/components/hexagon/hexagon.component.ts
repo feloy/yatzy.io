@@ -1,24 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { formulas, formulaNames } from '../grid/grid.component';
-
-export const colors: string[] = [
-  '#F44336',
-  '#2196F3',
-  '#FFEB3B',
-  '#4CAF50',
-  '#FF9800',
-  '#795548'
-];
-
-export const colorsUnplayed: string[] = [
-'#EF9A9A',
-'#90CAF9',
-'#FFF59D',
-'#A5D6A7',
-'#FFCC80',
-'#BCAAA4'
-];
+import { formulaNames } from 'src/app/values/formula-names';
+import { formulas } from 'src/app/values/formulas';
 
 @Component({
   selector: 'app-hexagon',

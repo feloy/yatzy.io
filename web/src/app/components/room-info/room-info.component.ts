@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 
-import { colors } from '../hexagon/hexagon.component';
-import { Player } from 'src/app/services/backend.service';
-import { Board } from '../grid/grid.component';
+import { Player } from 'src/app/models/player';
+import { colors } from 'src/app/values/colors';
+import { Board } from 'src/app/models/board';
 
 @Component({
   selector: 'app-room-info',
@@ -12,15 +12,15 @@ import { Board } from '../grid/grid.component';
 })
 export class RoomInfoComponent implements OnInit {
 
-  _players: Player[];
   _board: Board[];
-
-  scores: { string?: number };
 
   @Input() set board(value: Board[]) {
     this._board = value;
     this.computeScores();
   }
+
+  _players: Player[];
+
   @Input() set players(value: Player[]) {
     this._players = value;
     this.computeScores();
@@ -29,11 +29,12 @@ export class RoomInfoComponent implements OnInit {
   @Input() userId: string;
   @Output() userScore = new EventEmitter<number>();
 
+  scores: { string?: number };
   colors = colors;
+
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   private computeScores() {
     if (!this._players) {

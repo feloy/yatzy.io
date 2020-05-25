@@ -1,36 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-export interface Board {
-  x: number;
-  y: number;
-  userId: string;
-  formula?: string;
-  points?: number;
-}
+import { formulas } from 'src/app/values/formulas';
 
-export const formulas: string[] = [
-  '1', '2', '3',
-  '4', '5', '6',
-  '3K', '4K', 'FH',
-  'sm', 'LA', 'Y', '*'
-];
-
-export const formulaNames: string[] = [
-  'Aces', 'Twos', 'Threes',
-  'Fours', 'Fives', 'Sixes',
-  'Three of a kind', 'Four of a kind', 'Full house',
-  'Small Straight', 'Large Straight', 'Yatzy', 'Chance'
-];
-
-interface Hexagon {
-  x: number;
-  y: number;
-  p: number;
-  label: string;
-  colorIndex: number;
-  clickable: boolean;
-  played: boolean;
-}
+import { Board } from 'src/app/models/board';
 
 @Component({
   selector: 'app-grid',
