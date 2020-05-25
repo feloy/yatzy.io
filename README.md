@@ -3,7 +3,7 @@
 This project is a multi-player Yatzy game. It is composed of:
 
 - a backend written in Go hosted on GCP Cloud Functions,
-- a frontend written with Angular, hosted on Firebse Hosting,
+- a frontend written with Angular, hosted on Firebase Hosting,
 - an Android application written in Kotlin (open sourced soon).
 
 ## Deployment (under construction)
