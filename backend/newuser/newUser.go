@@ -8,6 +8,7 @@ import (
 	"time"
 
 	firebase "firebase.google.com/go"
+	"google.golang.org/api/iterator"
 
 	"cloud.google.com/go/firestore"
 	"cloud.google.com/go/functions/metadata"
@@ -77,15 +78,37 @@ func OnNewUser(ctx context.Context, e FirestoreEvent) error {
 		}
 
 		return client.RunTransaction(ctx, func(ctx context.Context, tx *firestore.Transaction) error {
-			// Create a new room and add user to it
-			roomID, err := addUserToNewRoom(ctx, tx, client, userID, user.Name, *user.Size, meta.Timestamp)
-			if err != nil {
-				log.Printf("error adding user to new room")
-				return err
+			var avail bool
+			var roomID string
+
+			if *user.BotsInvites > 0 {
+				// Force new game when inviting bots
+				avail = false
+			} else {
+				avail, roomID, err = getAvailableRoom(ctx, tx, client, *user.Size)
+				if err != nil {
+					log.Printf("Error getting if available room\n")
+					return err
+				}
 			}
-			if len(roomID) == 0 {
-				log.Printf("Error creating new room\n")
-				return err
+
+			if avail {
+				err = addUserToExistingRoom(ctx, tx, client, roomID, userID, user.Name, false)
+				if err != nil {
+					log.Printf("error updating user information")
+					return err
+				}
+			} else {
+				// Create a new room and add user to it
+				roomID, err = addUserToNewRoom(ctx, tx, client, userID, user.Name, *user.Size, meta.Timestamp)
+				if err != nil {
+					log.Printf("error adding user to new room")
+					return err
+				}
+				if len(roomID) == 0 {
+					log.Printf("Error creating new room\n")
+					return err
+				}
 			}
 
 			// Update user info
@@ -99,6 +122,7 @@ func OnNewUser(ctx context.Context, e FirestoreEvent) error {
 				log.Printf("error updating user information")
 				return err
 			}
+
 			// Create companion Bot users
 			for i := 1; i <= *user.BotsInvites; i++ {
 				err = CreateBotUser(ctx, tx, client, i, roomID)
@@ -174,6 +198,7 @@ func addUserToExistingRoom(ctx context.Context, tx *firestore.Transaction, clien
 		"name": name,
 		"bot":  bot,
 	}
+
 	ref := client.
 		Collection("rooms").Doc(room).
 		Collection("players").Doc(userID)
@@ -184,4 +209,19 @@ func addUserToExistingRoom(ctx context.Context, tx *firestore.Transaction, clien
 	}
 	log.Println("Added new player in room")
 	return nil
+}
+
+func getAvailableRoom(ctx context.Context, tx *firestore.Transaction, client *firestore.Client, size int) (bool, string, error) {
+	query := client.Collection("rooms").Where("roomSize", "==", size).Where("nplayers", "<", size)
+	iter := tx.Documents(query)
+	next, err := iter.Next()
+	if err == iterator.Done {
+		return false, "", nil // No room available
+	}
+	if err != nil {
+		return false, "", err // error occured
+	}
+
+	log.Printf("Found available room with size %d: %s", size, next.Ref.ID)
+	return true, next.Ref.ID, nil
 }
