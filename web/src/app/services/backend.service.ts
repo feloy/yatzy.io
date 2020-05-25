@@ -18,12 +18,12 @@ export class BackendService {
   constructor(public db: AngularFirestore) { }
 
   // joins user to a new room of size roomSize
-  join(user: AuthenticatedUser, roomSize: number): Promise<string> {
+  join(user: AuthenticatedUser, roomSize: number, botsInvites: number): Promise<string> {
     return this.db.collection<User>('users').add({
       name: user.name,
       size: roomSize,
       tokenId: user.token,
-      botsInvites: 0,
+      botsInvites: botsInvites,
     }).then((doc: firebase.firestore.DocumentReference) => {
       return doc.id;
     });

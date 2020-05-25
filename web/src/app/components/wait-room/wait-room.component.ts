@@ -30,7 +30,7 @@ export class WaitRoomComponent implements OnInit {
   }
 
   join(): Promise<string> {
-    return this.backend.join(this.me, this.roomConfig.roomSize);
+    return this.backend.join(this.me, this.roomConfig.roomSize, this.roomConfig.botsInvites);
   }
 
   waitRoomComplete(docId: string) {

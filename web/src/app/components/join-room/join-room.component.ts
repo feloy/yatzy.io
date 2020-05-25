@@ -19,8 +19,15 @@ export class JoinRoomComponent implements OnInit {
   }
 
   play() {
+    let size = parseInt(this.size, 10);
+    let botsInvites = 0;
+    if (size > 100) {
+      size -= 100;
+      botsInvites = size - 1;
+    }
     this.msg.emit({
-      roomSize: parseInt(this.size, 10)
+      roomSize: size,
+      botsInvites: botsInvites
     })
   }
 }
