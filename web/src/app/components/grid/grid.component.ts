@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { formulas } from 'src/app/values/formulas';
 
 import { Board } from 'src/app/models/board';
+import { Hexagon } from 'src/app/models/hexagon';
 
 @Component({
   selector: 'app-grid',

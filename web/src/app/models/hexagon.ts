@@ -1,4 +1,4 @@
-interface Hexagon {
+export interface Hexagon {
     x: number;
     y: number;
     p: number;
