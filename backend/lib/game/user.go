@@ -5,15 +5,16 @@ import (
 )
 
 type User struct {
-	Name    string
-	Size    *int
-	TokenID *string
-	Room    *string
-	Shots   *int
-	Die     []int
-	Replay  []int
-	Click   *myfirestore.Click
-	Finish  *bool
+	Name        string
+	Size        *int
+	BotsInvites *int
+	TokenID     *string
+	Room        *string
+	Shots       *int
+	Die         []int
+	Replay      []int
+	Click       *myfirestore.Click
+	Finish      *bool
 }
 
 // NewUserFromFirestoreValue returns a new Score, from values in FirestoreValue
@@ -27,6 +28,11 @@ func NewUserFromFirestoreValue(v myfirestore.FirestoreValue) (*User, error) {
 	s, err := v.GetIntegerValue("size")
 	if err == nil {
 		size = &s
+	}
+	var botsInvites *int
+	bi, err := v.GetIntegerValue("botsInvites")
+	if err == nil {
+		botsInvites = &bi
 	}
 	var tokenID *string
 	t, err := v.GetStringValue("tokenId")
@@ -53,14 +59,15 @@ func NewUserFromFirestoreValue(v myfirestore.FirestoreValue) (*User, error) {
 	}
 	click, _ := v.GetClickValue("click")
 	user = User{
-		Name:    name,
-		Size:    size,
-		TokenID: tokenID,
-		Shots:   shots,
-		Room:    room,
-		Die:     die,
-		Replay:  replay,
-		Click:   click,
+		Name:        name,
+		Size:        size,
+		BotsInvites: botsInvites,
+		TokenID:     tokenID,
+		Shots:       shots,
+		Room:        room,
+		Die:         die,
+		Replay:      replay,
+		Click:       click,
 	}
 	return &user, nil
 }
