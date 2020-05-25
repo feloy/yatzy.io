@@ -22,7 +22,8 @@ export class BackendService {
     return this.db.collection<User>('users').add({
       name: user.name,
       size: roomSize,
-      tokenId: user.token
+      tokenId: user.token,
+      botsInvites: 0,
     }).then((doc: firebase.firestore.DocumentReference) => {
       return doc.id;
     });
